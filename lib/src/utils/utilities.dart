@@ -48,13 +48,13 @@ enum FastCalcType {
 }
 
 class _Utilities {
-  _Utilities({@required this.amount, this.settings}) {
+  _Utilities({required this.amount, MoneyFormatterSettings? settings}) {
     this.settings = settings ?? MoneyFormatterSettings();
   }
 
   double amount;
 
-  MoneyFormatterSettings settings;
+  late MoneyFormatterSettings settings;
 
   /// Returns formatted number
   String get baseFormat => NumberFormat.currency(
@@ -71,7 +71,7 @@ class _Utilities {
       .replaceAll('(.)', this.settings.decimalSeparator);
 
   /// Returns spacer as `spaceBetweenSymbolAndNumber` value
-  String get spacer => this.settings.symbolAndNumberSeparator;
+  String? get spacer => this.settings.symbolAndNumberSeparator;
 
   /// Returns base compact format
   NumberFormat get baseCompact =>

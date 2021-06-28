@@ -36,7 +36,6 @@
 ///
 /// ---
 
-import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
 import 'package:flutter_money_formatter/src/utils/compact_format_type.dart';
@@ -48,12 +47,13 @@ part 'utils/utilities.dart';
 
 /// [FlutterMoneyFormatter] instance
 class FlutterMoneyFormatter {
-  _Utilities _utilities;
+  late _Utilities _utilities;
 
   /// Init instance of [FlutterMoneyFormatter]
   ///
   /// [amount] (@required) the number that will be formatted
-  FlutterMoneyFormatter({@required this.amount, this.settings}) {
+  FlutterMoneyFormatter(
+      {required this.amount, MoneyFormatterSettings? settings}) {
     this.settings = settings ?? MoneyFormatterSettings();
     output = _getOutput();
     comparator = MoneyFormatterCompare(amount: this.amount);
@@ -63,13 +63,13 @@ class FlutterMoneyFormatter {
   double amount;
 
   /// The formatter settings
-  MoneyFormatterSettings settings;
+  late MoneyFormatterSettings settings;
 
   /// Returns compiled and formatted output in several formats.
-  MoneyFormatterOutput output;
+  MoneyFormatterOutput? output;
 
   /// Comparator
-  MoneyFormatterCompare comparator;
+  MoneyFormatterCompare? comparator;
 
   /// output builder
   MoneyFormatterOutput _getOutput() {
@@ -95,7 +95,7 @@ class FlutterMoneyFormatter {
 
   /// returns FlutterMoneyFormatter after calculating amount.
   FlutterMoneyFormatter fastCalc(
-      {@required FastCalcType type, @required double amount}) {
+      {required FastCalcType type, required double amount}) {
     switch (type) {
       case FastCalcType.addition:
         this.amount += amount;
@@ -130,14 +130,14 @@ class FlutterMoneyFormatter {
 
   /// Copies current instance and change some values to the new instance.
   FlutterMoneyFormatter copyWith(
-      {double amount,
-      String symbol,
-      String thousandSeparator,
-      String decimalSeparator,
-      int fractionDigits,
-      String symbolAndNumberSeparator,
-      CompactFormatType compactFormatType}) {
-    MoneyFormatterSettings ts = this.settings;
+      {double? amount,
+      String? symbol,
+      String? thousandSeparator,
+      String? decimalSeparator,
+      int? fractionDigits,
+      String? symbolAndNumberSeparator,
+      CompactFormatType? compactFormatType}) {
+    MoneyFormatterSettings? ts = this.settings;
 
     MoneyFormatterSettings mfs = MoneyFormatterSettings(
         symbol: symbol ?? ts.symbol,

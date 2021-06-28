@@ -45,19 +45,12 @@ import 'package:flutter_money_formatter/src/utils/compact_format_type.dart';
 class MoneyFormatterSettings {
   /// Init instance of [MoneyFormatterSettings]
   MoneyFormatterSettings(
-      {this.symbol,
-      this.thousandSeparator,
-      this.decimalSeparator,
-      this.symbolAndNumberSeparator,
-      this.fractionDigits,
-      this.compactFormatType}) {
-    this.symbol = this.symbol ?? '\$';
-    this.thousandSeparator = this.thousandSeparator ?? ',';
-    this.decimalSeparator = this.decimalSeparator ?? '.';
-    this.symbolAndNumberSeparator = this.symbolAndNumberSeparator ?? ' ';
-    this.fractionDigits = this.fractionDigits ?? 2;
-    this.compactFormatType = this.compactFormatType ?? CompactFormatType.short;
-  }
+      {this.symbol = '\$',
+      this.thousandSeparator = ',',
+      this.decimalSeparator = '.',
+      this.symbolAndNumberSeparator = ' ',
+      this.fractionDigits = 2,
+      this.compactFormatType = CompactFormatType.short});
 
   /// The [symbol] that will be used on formatted output, default value is $ (Dollar Sign)
   String symbol;
